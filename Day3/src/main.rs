@@ -57,17 +57,9 @@ fn main() {
     for i in 0..counts.len() {
         let count = lines.iter().filter(|&&line| &line[i..i + 1] == "1").count();
         if count >= lines.len() / 2 + lines.len() % 2 {
-            lines = lines
-                .iter()
-                .filter(|&&line| &line[i..i + 1] == "0")
-                .cloned()
-                .collect()
+            lines.retain(|&line| &line[i..i + 1] == "0");
         } else {
-            lines = lines
-                .iter()
-                .filter(|&&line| &line[i..i + 1] == "1")
-                .cloned()
-                .collect()
+            lines.retain(|&line| &line[i..i + 1] == "1");
         }
 
         if lines.len() == 1 {
